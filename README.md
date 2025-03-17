@@ -1,67 +1,56 @@
-# To-Do List API
+To-Do List API (projeto Decola Tech)
+Descrição
+O To-Do List API é uma API REST desenvolvida em Java com Spring Boot para gerenciar tarefas de uma lista de afazeres. A aplicação permite a realização de operações CRUD (Criar, Ler, Atualizar e Excluir) para manipular tarefas de forma eficiente.
 
-Este projeto é uma **API REST** desenvolvida em **Java** utilizando **Spring Boot** para gerenciar tarefas de uma lista de afazeres (To-Do List). A aplicação permite realizar operações de **CRUD** (Criar, Ler, Atualizar e Excluir) em tarefas.
+Tecnologias Utilizadas
+Java 23
+Spring Boot
+Spring Data JPA
+Swagger (OpenAPI)
+H2 Database (Banco de dados em memória para testes)
 
-## Funcionalidades
+Funcionalidades
+Criar Tarefa: Permite criar uma nova tarefa com título, descrição e status de conclusão.
+Listar Tarefas: Exibe todas as tarefas cadastradas no sistema.
+Buscar Tarefa por ID: Retorna uma tarefa específica pelo seu identificador.
+Atualizar Tarefa: Modifica os detalhes de uma tarefa existente.
+Excluir Tarefa: Remove uma tarefa do sistema com base no seu ID.
 
-- **Criar tarefa**: Permite criar uma nova tarefa com título, descrição e status de conclusão.
-- **Listar tarefas**: Exibe todas as tarefas cadastradas.
-- **Buscar tarefa por ID**: Permite buscar uma tarefa específica através do seu ID.
-- **Atualizar tarefa**: Atualiza os detalhes de uma tarefa existente.
-- **Deletar tarefa**: Exclui uma tarefa pelo ID.
+Como Executar o Projeto
+1. Clonar o Repositório
+git clone https://github.com/seu-usuario/todo-list-api.git
+cd todo-list-api
 
-## Tecnologias Utilizadas
+3. Configurar o Banco de Dados
+O projeto utiliza H2 Database, que roda em memória por padrão. Para usar um banco de dados persistente, modifique o arquivo application.properties:
 
-- **Java 23**
-- **Spring Boot**
-- **Spring Data JPA**
-- **Swagger**
-- **H2 Database**
+properties
 
-## Diagrama de Classes do Projeto
+spring.datasource.url=jdbc:h2:mem:todo_db
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+Para usar um banco PostgreSQL ou outro, substitua as configurações acima pelas credenciais do banco desejado.
 
-Aqui está o diagrama de classes representando as principais entidades e interações do seu projeto:
+3. Construir e Executar a Aplicação
+mvn clean install
+mvn spring-boot:run
+A API estará disponível em: http://localhost:8080
 
-```mermaid
-classDiagram
-    class Task {
-        +Long id
-        +String title
-        +String description
-        +boolean completed
-        +getId()
-        +getTitle()
-        +getDescription()
-        +isCompleted()
-        +setId()
-        +setTitle()
-        +setDescription()
-        +setCompleted()
-    }
+Documentação da API
+Acesse a documentação via Swagger em:
+http://localhost:8080/swagger-ui.html
 
-    class TaskRepository {
-        +findAll()
-        +findById(id: Long)
-        +save(task: Task)
-        +delete(task: Task)
-    }
+Estrutura do Projeto
 
-    class TaskService {
-        +getAllTask()
-        +getTaskById(id: Long)
-        +createTask(task: Task)
-        +updateTask(id: Long, taskDetails: Task)
-        +deleteTask(id: Long)
-    }
-
-    class TaskController {
-        +getAllTask()
-        +getTaskById(id: Long)
-        +createTask(task: Task)
-        +updateTask(id: Long, taskDetails: Task)
-        +deleteTask(id: Long)
-    }
-
-    TaskRepository "1" --> "1..*" Task : manages
-    TaskService "1" --> "1" TaskRepository : uses
-    TaskController "1" --> "1" TaskService : uses
+todo-list-api/
+├── src/
+│   ├── main/java/com/seuusuario/todolist/
+│   │   ├── controller/    # Controllers da API
+│   │   ├── service/       # Regras de negócio
+│   │   ├── repository/    # Repositórios JPA
+│   │   ├── model/         # Entidades (Tarefa)
+├── pom.xml                # Dependências do projeto
+├── README.md              # Documentação
