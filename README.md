@@ -1,4 +1,4 @@
-To-Do List API (projeto Decola Tech)
+## To-Do List API (projeto Decola Tech)
 Descrição
 O To-Do List API é uma API REST desenvolvida em Java com Spring Boot para gerenciar tarefas de uma lista de afazeres. A aplicação permite a realização de operações CRUD (Criar, Ler, Atualizar e Excluir) para manipular tarefas de forma eficiente.
 
@@ -18,14 +18,13 @@ Excluir Tarefa: Remove uma tarefa do sistema com base no seu ID.
 
 Como Executar o Projeto
 1. Clonar o Repositório
+sh
 git clone https://github.com/seu-usuario/todo-list-api.git
 cd todo-list-api
-
-3. Configurar o Banco de Dados
+2. Configurar o Banco de Dados
 O projeto utiliza H2 Database, que roda em memória por padrão. Para usar um banco de dados persistente, modifique o arquivo application.properties:
 
 properties
-
 spring.datasource.url=jdbc:h2:mem:todo_db
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
@@ -35,16 +34,18 @@ spring.h2.console.enabled=true
 Para usar um banco PostgreSQL ou outro, substitua as configurações acima pelas credenciais do banco desejado.
 
 3. Construir e Executar a Aplicação
+sh
 mvn clean install
 mvn spring-boot:run
 A API estará disponível em: http://localhost:8080
 
 Documentação da API
 Acesse a documentação via Swagger em:
+
+sh
 http://localhost:8080/swagger-ui.html
-
 Estrutura do Projeto
-
+sh
 todo-list-api/
 ├── src/
 │   ├── main/java/com/seuusuario/todolist/
@@ -52,5 +53,6 @@ todo-list-api/
 │   │   ├── service/       # Regras de negócio
 │   │   ├── repository/    # Repositórios JPA
 │   │   ├── model/         # Entidades (Tarefa)
+├── src/test/java/...      # Testes unitários e de integração
 ├── pom.xml                # Dependências do projeto
 ├── README.md              # Documentação
