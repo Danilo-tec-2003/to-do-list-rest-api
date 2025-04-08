@@ -9,6 +9,8 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
+// Entidade que representa a tabela 'tasks' no banco de dados.
 public class Task {
 
     @Id
